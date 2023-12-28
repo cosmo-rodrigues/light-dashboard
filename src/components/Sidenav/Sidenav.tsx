@@ -6,17 +6,19 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 
 import * as Styles from './styles';
+import { useNavBarStore } from '../../store/navBarStore';
 
-export function Sidenav() {
-  const [open, setOpen] = React.useState(true);
+export function SideNav() {
+  const { open } = useNavBarStore((state) => state);
   const navigate = useNavigate();
 
   return (
     <Material.Box sx={{ display: 'flex' }}>
       <Material.CssBaseline />
+      <Material.Box height={30} />
       <Styles.Drawer variant="permanent" open={open}>
         <Styles.DrawerHeader>
-          <Material.IconButton onClick={() => setOpen(!open)}>
+          <Material.IconButton>
             {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </Material.IconButton>
         </Styles.DrawerHeader>
