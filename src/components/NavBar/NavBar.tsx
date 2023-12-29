@@ -54,9 +54,11 @@ export function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Material.MenuItem onClick={handleMenuClose}>Profile</Material.MenuItem>
       <Material.MenuItem onClick={handleMenuClose}>
-        My account
+        Meu perfil
+      </Material.MenuItem>
+      <Material.MenuItem onClick={handleMenuClose}>
+        Minha conta
       </Material.MenuItem>
     </Material.Menu>
   );
@@ -119,7 +121,7 @@ export function NavBar() {
 
   return (
     <Material.Box sx={{ flexGrow: 1 }}>
-      <Styles.AppBar position="fixed">
+      <Styles.AppBar position="fixed" elevation={0}>
         <Material.Toolbar>
           <Material.IconButton
             size="large"
@@ -137,14 +139,14 @@ export function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            LUMI
           </Material.Typography>
           <Styles.Search>
             <Styles.SearchIconWrapper>
               <SearchIcon />
             </Styles.SearchIconWrapper>
             <Styles.StyledInputBase
-              placeholder="Search…"
+              placeholder="Pesquisar cliente..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Styles.Search>

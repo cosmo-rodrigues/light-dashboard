@@ -51,6 +51,7 @@ export const StyledInputBase = Material.styled(Material.InputBase)(
 export const AppBar = Material.styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
+  backgroundColor: '#023b21',
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
