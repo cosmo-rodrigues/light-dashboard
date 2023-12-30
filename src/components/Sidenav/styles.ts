@@ -5,6 +5,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 export const drawerWidth = 240;
 
 export const openedMixin = (theme: Theme): CSSObject => ({
+  backgroundColor: '#023b21',
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -14,6 +15,7 @@ export const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 export const closedMixin = (theme: Theme): CSSObject => ({
+  backgroundColor: '#023b21',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,

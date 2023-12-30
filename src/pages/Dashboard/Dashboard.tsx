@@ -1,8 +1,8 @@
 import * as Material from '@mui/material';
 import * as Components from '../../components';
-import { NavBar } from '../../components/NavBar/NavBar';
 
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
+import CountUp from 'react-countup';
 
 import * as Styles from './styles';
 
@@ -16,21 +16,21 @@ export function Dashboard() {
           'linear-gradient(158deg, rgba(224, 224, 224) 0%, rgba(233, 237, 254) 100%',
       }}
     >
-      <NavBar />
-      <Material.Box height={70} />
+      <Components.NavBar />
+      <Material.Box height={50} />
       <Material.Box sx={{ display: 'flex' }}>
         <Components.SideNav />
         <Material.Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Material.Grid container spacing={2}>
+          <Material.Grid container spacing={1}>
             <Material.Grid item xs={8}>
-              <Material.Stack direction="row" spacing={2}>
+              <Material.Stack direction="row" spacing={1}>
                 <Material.Card
                   sx={{
                     bgcolor: '#9f4717',
                     border: '#82ffa1 1px',
                     color: '#ffffff',
-                    minWidth: '49%',
-                    height: 150,
+                    minWidth: '50%',
+                    height: 145,
                     ':hover': {
                       bgcolor: 'rgb(69,4,1)',
                       background:
@@ -47,7 +47,8 @@ export function Dashboard() {
                       variant="h5"
                       component="div"
                     >
-                      300 KW/h Consumidos
+                      <CountUp delay={0.4} end={300} duration={0.6} />
+                      KW/h Consumidos
                     </Material.Typography>
                     <Material.Typography
                       gutterBottom
@@ -65,7 +66,7 @@ export function Dashboard() {
                     border: '#82ffa1 1px',
                     color: '#ffffff',
                     minWidth: '49%',
-                    height: 150,
+                    height: 145,
                     ':hover': {
                       bgcolor: 'rgb(0,0,0)',
                       background:
@@ -83,7 +84,8 @@ export function Dashboard() {
                       variant="h5"
                       component="div"
                     >
-                      300 KW/h Gerados
+                      <CountUp delay={0.4} end={300} duration={0.6} />
+                      KW/h Gerados
                     </Material.Typography>
                     <Material.Typography
                       gutterBottom
@@ -97,8 +99,8 @@ export function Dashboard() {
               </Material.Stack>
             </Material.Grid>
             <Material.Grid item xs={4}>
-              <Material.Stack spacing={2}>
-                <Material.Card sx={{ maxWidth: 345 }}>
+              <Material.Stack spacing={1}>
+                <Material.Card sx={{ maxWidth: '100%' }}>
                   <Material.Stack direction="row">
                     <Styles.IconContainer>
                       <DescriptionRoundedIcon />
@@ -111,7 +113,7 @@ export function Dashboard() {
                   </Material.Stack>
                 </Material.Card>
 
-                <Material.Card sx={{ maxWidth: 345 }}>
+                <Material.Card sx={{ maxWidth: '100%' }}>
                   <Material.Stack direction="row">
                     <Styles.IconContainer>
                       <DescriptionRoundedIcon />
@@ -129,30 +131,34 @@ export function Dashboard() {
             <Material.Box height={20} />
 
             <Material.Grid item xs={8}>
-              <Material.Card sx={{ height: '60vh' }}>
+              <Material.Card sx={{ height: '70vh' }}>
                 <Material.CardContent>
-                  <Material.Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                  >
-                    Lizard
-                  </Material.Typography>
+                  <Components.Charts.BarChart />
                 </Material.CardContent>
               </Material.Card>
             </Material.Grid>
+
             <Material.Grid item xs={4}>
-              <Material.Card sx={{ height: '60vh' }}>
-                <Material.CardContent>
-                  <Material.Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                  >
-                    Lizard
-                  </Material.Typography>
-                </Material.CardContent>
-              </Material.Card>
+              <Material.Stack spacing={1}>
+                <Material.Card sx={{ height: '29vh', overflowY: 'scroll' }}>
+                  <Material.CardContent>
+                    <Material.Typography
+                      variant="h6"
+                      textAlign="center"
+                      fontWeight="500"
+                    >
+                      Contas Anteriores
+                    </Material.Typography>
+                    <Components.PastBills />
+                  </Material.CardContent>
+                </Material.Card>
+
+                <Material.Card sx={{ height: '40vh' }}>
+                  <Material.CardContent>
+                    <Components.Charts.DonutChart />
+                  </Material.CardContent>
+                </Material.Card>
+              </Material.Stack>
             </Material.Grid>
           </Material.Grid>
         </Material.Box>
