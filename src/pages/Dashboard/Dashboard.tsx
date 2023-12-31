@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as Material from '@mui/material';
 
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';

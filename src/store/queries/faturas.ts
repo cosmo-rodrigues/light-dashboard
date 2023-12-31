@@ -22,8 +22,10 @@ async function getFaturasFromUser(userNumber: string) {
   return faturas || [];
 }
 
-async function downloadRegisteredFatura(numeroDaNotaNF: string) {
-  const { data } = await api.get<string>(`/fatura/baixar/${numeroDaNotaNF}`);
+async function downloadRegisteredFatura(numeroDaNotaNF: string | null) {
+  const { data } = await api.get<{ link: string }>(
+    `/fatura/baixar/${numeroDaNotaNF}`
+  );
 
   return data;
 }
@@ -42,7 +44,7 @@ export function useGetClientFaturas(userNumber: string) {
   });
 }
 
-export function UseDownloadFaturas(numeroDaNotaNF: string) {
+export function useDownloadFaturas(numeroDaNotaNF: string | null) {
   return useQuery({
     queryKey: ['baixar-fatura', numeroDaNotaNF],
     queryFn: () => downloadRegisteredFatura(numeroDaNotaNF),

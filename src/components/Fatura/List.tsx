@@ -1,8 +1,7 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as Material from '@mui/material';
 import { IFatura } from '../../dtos/faturas';
-import { UseDownloadFaturas } from '../../store/queries/faturas';
+import { useDownloadFaturas } from '../../store/queries/faturas';
 
 interface Column {
   id:
@@ -101,8 +100,8 @@ function createData(
 export function List({ faturas }: { faturas: IFatura[] }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [faturaNf, setFaturaNf] = React.useState(null);
-  const { data } = UseDownloadFaturas(faturaNf);
+  const [faturaNf, setFaturaNf] = React.useState<string | null>(null);
+  const { data } = useDownloadFaturas(faturaNf);
 
   const rows = faturas.map(
     ({
@@ -137,8 +136,6 @@ export function List({ faturas }: { faturas: IFatura[] }) {
   const handleFaturaDownload = React.useCallback(() => {
     if (data && data.link) {
       const link = document.createElement('a');
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       link.href = data.link;
       link.target = '_blank';
       link.setAttribute('download', 'fatura.pdf');
@@ -195,8 +192,6 @@ export function List({ faturas }: { faturas: IFatura[] }) {
                     key={`${index}-${row.numeroDaNotaNF}`}
                   >
                     {columns.map((column) => {
-                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                      // @ts-ignore
                       const value = row[column.id];
 
                       return (
@@ -231,7 +226,7 @@ export function List({ faturas }: { faturas: IFatura[] }) {
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={handleChangePage}
+        onPageChange={({ target }) => handleChangePage(target.value)}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Material.Paper>

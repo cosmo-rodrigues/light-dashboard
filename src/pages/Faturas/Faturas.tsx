@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as Material from '@mui/material';
 import { useListFaturas } from '../../store/useListFaturas';
 import { NavBar } from '../../components/NavBar/NavBar';
