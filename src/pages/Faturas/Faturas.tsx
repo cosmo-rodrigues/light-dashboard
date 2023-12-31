@@ -1,7 +1,7 @@
 import * as Material from '@mui/material';
 import { useListFaturas } from '../../store/useListFaturas';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { SideNav } from '../../components/SideNav/SideNav';
+import { SideNav } from '../../components/SideNav/SideNav.tsx';
 import { List } from '../../components/Fatura';
 
 export function Faturas() {
