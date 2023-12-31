@@ -4,7 +4,7 @@ import * as Components from '../../components';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import CountUp from 'react-countup';
 
-import * as Styles from './styles';
+import * as Styles from './styles.ts';
 
 export function Dashboard() {
   return (
