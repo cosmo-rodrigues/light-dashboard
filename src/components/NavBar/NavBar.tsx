@@ -26,8 +26,14 @@ export function NavBar() {
   const setUserNumber = useNavBarStore((state) => state.setUserNumber);
   const [initialUserNumber, setInitialUserNumber] = React.useState(userNumber);
   const { data: singleUserData } = useGetClientFaturas(userNumber);
-  const { data: userData } = useGetAllFaturas();
+  const { data: userData, isLoading } = useGetAllFaturas();
   const setFaturas = useListFaturas((state) => state.setFaturas);
+
+  React.useEffect(() => {
+    if (!isLoading) {
+      setFaturas(userData);
+    }
+  }, [isLoading, setFaturas, userData]);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

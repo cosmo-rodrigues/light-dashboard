@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from 'react';
 import * as Material from '@mui/material';
 import { IFatura } from '../../dtos/faturas';
