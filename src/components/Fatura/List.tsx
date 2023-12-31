@@ -134,7 +134,7 @@ export function List({ faturas }: { faturas: IFatura[] }) {
     setPage(0);
   };
 
-  const handleFaturaDownload = () => {
+  const handleFaturaDownload = React.useCallback(() => {
     if (data && data.link) {
       const link = document.createElement('a');
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -148,7 +148,7 @@ export function List({ faturas }: { faturas: IFatura[] }) {
     } else {
       console.error('No download link found!');
     }
-  };
+  }, [data]);
 
   React.useEffect(() => {
     if (faturaNf) {
