@@ -6,7 +6,7 @@ import LineAxisRoundedIcon from '@mui/icons-material/LineAxisRounded';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 
 import * as Styles from './styles';
-import { useNavBarStore } from '../../store/navBarStore';
+import { useNavBarStore } from '../../store/useNavBarStore';
 
 export function SideNav() {
   const { open } = useNavBarStore((state) => state);

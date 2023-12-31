@@ -9,13 +9,25 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
 import * as Styles from './styles';
-import { useNavBarStore } from '../../store/navBarStore';
+import { useNavBarStore } from '../../store/useNavBarStore';
+import {
+  useGetAllFaturas,
+  useGetClientFaturas,
+} from '../../store/queries/faturas';
+import { useListFaturas } from '../../store/useListFaturas';
 
 export function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-  const { open, setOpen } = useNavBarStore((state) => state);
+  const open = useNavBarStore((state) => state.open);
+  const setOpen = useNavBarStore((state) => state.setOpen);
+  const userNumber = useNavBarStore((state) => state.userNumber);
+  const setUserNumber = useNavBarStore((state) => state.setUserNumber);
+  const [initialUserNumber, setInitialUserNumber] = React.useState(userNumber);
+  const { data: singleUserData } = useGetClientFaturas(userNumber);
+  const { data: userData } = useGetAllFaturas();
+  const setFaturas = useListFaturas((state) => state.setFaturas);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -35,6 +47,24 @@ export function NavBar() {
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleUserNumber = (userNumber: string) => {
+    setUserNumber(userNumber);
+    setTimeout(() => {
+      setFaturas(singleUserData);
+    }, 1000);
+  };
+
+  const handleInitialUserNumber = (userNumber: string) => {
+    setInitialUserNumber(userNumber);
+    if (userNumber.length === 10) {
+      handleUserNumber(userNumber);
+    }
+
+    if (userNumber.length === 0) {
+      setFaturas(userData);
+    }
   };
 
   const menuId = 'primary-search-account-menu';
@@ -148,6 +178,8 @@ export function NavBar() {
             <Styles.StyledInputBase
               placeholder="Pesquisar cliente..."
               inputProps={{ 'aria-label': 'search' }}
+              value={initialUserNumber}
+              onChange={(event) => handleInitialUserNumber(event.target.value)}
             />
           </Styles.Search>
           <Material.Box sx={{ flexGrow: 1 }} />
