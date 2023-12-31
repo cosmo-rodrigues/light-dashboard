@@ -1,10 +1,14 @@
 import * as Material from '@mui/material';
-import * as Components from '../../components';
 
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import CountUp from 'react-countup';
 
 import * as Styles from './styles.ts';
+import { BarChart } from '../../components/Charts/BarChart/BarChart.tsx';
+import { PastBills } from '../../components/PastBills/PastBills.tsx';
+import { NavBar } from '../../components/NavBar/NavBar.tsx';
+import { SideNav } from '../../components/SideNav/SideNav.tsx';
+import { DonutChart } from '../../components/Charts/DonutChart/DonutChart.tsx';
 
 export function Dashboard() {
   return (
@@ -16,10 +20,10 @@ export function Dashboard() {
           'linear-gradient(158deg, rgba(224, 224, 224) 0%, rgba(233, 237, 254) 100%',
       }}
     >
-      <Components.NavBar />
+      <NavBar />
       <Material.Box height={50} />
       <Material.Box sx={{ display: 'flex' }}>
-        <Components.SideNav />
+        <SideNav />
         <Material.Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Material.Grid container spacing={1}>
             <Material.Grid item xs={8}>
@@ -133,7 +137,7 @@ export function Dashboard() {
             <Material.Grid item xs={8}>
               <Material.Card sx={{ height: '70vh' }}>
                 <Material.CardContent>
-                  <Components.Charts.BarChart />
+                  <BarChart />
                 </Material.CardContent>
               </Material.Card>
             </Material.Grid>
@@ -149,13 +153,13 @@ export function Dashboard() {
                     >
                       Contas Anteriores
                     </Material.Typography>
-                    <Components.PastBills />
+                    <PastBills />
                   </Material.CardContent>
                 </Material.Card>
 
                 <Material.Card sx={{ height: '40vh' }}>
                   <Material.CardContent>
-                    <Components.Charts.DonutChart />
+                    <DonutChart />
                   </Material.CardContent>
                 </Material.Card>
               </Material.Stack>

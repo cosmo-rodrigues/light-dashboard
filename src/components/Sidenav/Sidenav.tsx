@@ -5,7 +5,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LineAxisRoundedIcon from '@mui/icons-material/LineAxisRounded';
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 
-import * as Styles from './styles';
+import * as Styles from './styles.ts';
 import { useNavBarStore } from '../../store/useNavBarStore';
 
 export function SideNav() {

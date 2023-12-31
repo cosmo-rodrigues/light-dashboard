@@ -1,18 +1,20 @@
 import * as Material from '@mui/material';
-import * as Components from '../../components';
 import { useListFaturas } from '../../store/useListFaturas';
+import { NavBar } from '../../components/NavBar/NavBar';
+import { SideNav } from '../../components/SideNav/SideNav';
+import { List } from '../../components/Fatura';
 
 export function Faturas() {
   const faturas = useListFaturas((state) => state.faturas);
 
   return (
     <>
-      <Components.NavBar />
+      <NavBar />
       <Material.Box height={50} />
       <Material.Box sx={{ display: 'flex' }}>
-        <Components.SideNav />
+        <SideNav />
         <Material.Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Components.Fatura.List faturas={faturas} />
+          <List faturas={faturas} />
         </Material.Box>
       </Material.Box>
     </>

@@ -1,5 +1,6 @@
 import * as Router from 'react-router-dom';
-import * as Pages from './pages';
+import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Faturas } from './pages/Faturas/Faturas';
 
 export default function App() {
   return (
@@ -8,13 +9,10 @@ export default function App() {
         <Router.Routes>
           <Router.Route
             path="/dashboard"
-            element={<Pages.Dashboard />}
+            element={<Dashboard />}
           ></Router.Route>
-          <Router.Route
-            path="/faturas"
-            element={<Pages.Faturas />}
-          ></Router.Route>
-          <Router.Route path="*" element={<Pages.Dashboard />} />
+          <Router.Route path="/faturas" element={<Faturas />}></Router.Route>
+          <Router.Route path="*" element={<Dashboard />} />
         </Router.Routes>
       </Router.BrowserRouter>
     </>
