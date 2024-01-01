@@ -5,9 +5,18 @@ import { Item } from './Item';
 
 export function CarouselComponent({ faturas }: { faturas: IFatura[] }) {
   return (
-    <Carousel>
+    <Carousel
+      autoPlay={false}
+      navButtonsAlwaysVisible
+      animation="slide"
+      navButtonsProps={{
+        style: {
+          opacity: 0.4,
+        },
+      }}
+    >
       {faturas.map((item) => (
-        <Item key={item.numeroDaNotaNF} fatura={item} />
+        <Item key={item.numeroDaNotaNF} fatura={item} faturas={faturas} />
       ))}
     </Carousel>
   );

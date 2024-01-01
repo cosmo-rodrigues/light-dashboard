@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as Material from '@mui/material';
 import { IFatura } from '../../dtos/faturas';
 import { useDownloadFaturas } from '../../store/queries/faturas';
+import { formatDate, formatPrice } from '../../helpers/fortamatters';
 
 interface Column {
   id:
@@ -63,18 +64,6 @@ interface Data {
   valorTotalDaFatura: string;
   dataDoVencimento: string;
   numeroDaNotaNF: string;
-}
-
-function formatDate(date: string) {
-  const newDate = new Date(date);
-  return new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(newDate);
-}
-
-function formatPrice(value: string) {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(Number(value));
 }
 
 function createData(
@@ -150,7 +139,6 @@ export function List({ faturas }: { faturas: IFatura[] }) {
 
   React.useEffect(() => {
     if (faturaNf) {
-      console.log(faturaNf);
       handleFaturaDownload();
     }
   }, [faturaNf, handleFaturaDownload]);
@@ -190,7 +178,7 @@ export function List({ faturas }: { faturas: IFatura[] }) {
                     hover
                     role="checkbox"
                     tabIndex={-1}
-                    key={`${index}-${row.numeroDaNotaNF}`}
+                    key={`${Math.random() * index}-${row.numeroDaNotaNF}`}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];

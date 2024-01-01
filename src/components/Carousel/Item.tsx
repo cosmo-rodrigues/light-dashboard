@@ -5,23 +5,16 @@ import CountUp from 'react-countup';
 
 import { IFatura } from '../../dtos/faturas';
 import { BarChart } from '../Charts/BarChart/BarChart.tsx';
-import { PastBills } from '../PastBills/PastBills.tsx';
+import { OtherBills } from '../OtherBills/OtherBills.tsx';
 import { DonutChart } from '../Charts/DonutChart/DonutChart.tsx';
-export function Item({ fatura }: { fatura: IFatura }) {
-  function formatDate(date: string) {
-    const newDate = new Date(date);
-    return new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(
-      newDate
-    );
-  }
-
-  function formatPrice(value: string) {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(Number(value));
-  }
-
+import { formatDate, formatPrice } from '../../helpers/fortamatters.ts';
+export function Item({
+  fatura,
+  faturas,
+}: {
+  fatura: IFatura;
+  faturas: IFatura[];
+}) {
   return (
     <Material.Grid container spacing={1}>
       <Material.Grid item xs={12}>
@@ -29,7 +22,8 @@ export function Item({ fatura }: { fatura: IFatura }) {
           <Material.Card sx={{ minWidth: '100vw' }}>
             <Material.Typography variant="h5" fontWeight={500} padding={1}>
               Fatura de {fatura.nomeDoCliente} referente a:{' '}
-              {formatDate(fatura.faturaReferenteA)}
+              {formatDate(fatura.faturaReferenteA)} com vencimento em:{' '}
+              {formatDate(fatura.dataDoVencimento)}
             </Material.Typography>
           </Material.Card>
         </Material.Stack>
@@ -114,7 +108,7 @@ export function Item({ fatura }: { fatura: IFatura }) {
                   {formatPrice(fatura.valorTotalDaFatura)}
                 </Styles.BillTitle>
                 <br />
-                <Styles.BillSubTitle>Valor atual</Styles.BillSubTitle>
+                <Styles.BillSubTitle>Valor total</Styles.BillSubTitle>
               </Styles.BillContainer>
             </Material.Stack>
           </Material.Card>
@@ -154,15 +148,15 @@ export function Item({ fatura }: { fatura: IFatura }) {
                 textAlign="center"
                 fontWeight="500"
               >
-                Contas Anteriores
+                Demais Faturas
               </Material.Typography>
-              <PastBills />
+              <OtherBills faturas={faturas} current={fatura.numeroDaNotaNF} />
             </Material.CardContent>
           </Material.Card>
 
           <Material.Card sx={{ height: '36vh' }}>
             <Material.CardContent>
-              <DonutChart />
+              <DonutChart fatura={fatura} />
             </Material.CardContent>
           </Material.Card>
         </Material.Stack>

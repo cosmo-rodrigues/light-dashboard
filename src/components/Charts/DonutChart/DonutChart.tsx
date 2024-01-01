@@ -15,7 +15,7 @@ const options = {
   is3D: false,
 };
 
-export function DonutChart() {
+export function DonutChart({ fatura }: { fatura: IFatura }) {
   return (
     <Chart
       chartType="PieChart"
