@@ -4,6 +4,7 @@ import { NavBar } from '../../components/NavBar/NavBar.tsx';
 import { SideNav } from '../../components/SideNav/SideNav.tsx';
 import { CarouselComponent } from '../../components/Carousel/Carousel.tsx';
 import { useListFaturas } from '../../store/useListFaturas.ts';
+import { CarouselSkeleton } from '../../components/Carousel/CarouselSkeleton.tsx';
 
 export function Dashboard() {
   const faturas = useListFaturas((state) => state.faturas);
@@ -21,7 +22,11 @@ export function Dashboard() {
       <Material.Box sx={{ display: 'flex' }}>
         <SideNav />
         <Material.Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <CarouselComponent faturas={faturas} />
+          {faturas.length > 0 ? (
+            <CarouselComponent faturas={faturas} />
+          ) : (
+            <CarouselSkeleton />
+          )}
         </Material.Box>
       </Material.Box>
     </div>
