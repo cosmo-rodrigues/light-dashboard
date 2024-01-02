@@ -1,22 +1,26 @@
 import { Chart } from 'react-google-charts';
+import { IFatura } from '../../../dtos/faturas';
+import {
+  aggregateFaturaValues,
+  formatDate,
+} from '../../../helpers/fortamatters';
 
-const data = [
-  ['Year', 'Consumido', 'Gerado', 'Outros'],
-  ['2014', 1000, 400, 200],
-  ['2015', 1170, 460, 250],
-  ['2016', 660, 1120, 300],
-  ['2017', 1030, 540, 350],
-];
+export function BarChart({ fatura }: { fatura: IFatura }) {
+  const valores = aggregateFaturaValues(fatura);
+  console.log(valores);
+  const data = [
+    ['Mês', 'Consumido', 'Gerado'],
+    [formatDate(fatura.faturaReferenteA), valores.consumo, valores.compensada],
+  ];
 
-const options = {
-  chart: {
-    title: 'Company Performance',
-    subtitle: 'Consumido, Gerado e Outros: 2014-2017',
-  },
-  colors: ['#9f4717', '#023b21', '#facd05'],
-};
+  const options = {
+    chart: {
+      title: 'Energia Elétrica',
+      subtitle: 'Consumido e Gerado',
+    },
+    colors: ['#9f4717', '#023b21'],
+  };
 
-export function BarChart() {
   return (
     <Chart
       chartType="Bar"

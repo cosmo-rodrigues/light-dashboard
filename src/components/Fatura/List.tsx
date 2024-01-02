@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from 'react';
 import * as Material from '@mui/material';
 import { IFatura } from '../../dtos/faturas';
@@ -64,6 +63,7 @@ interface Data {
   valorTotalDaFatura: string;
   dataDoVencimento: string;
   numeroDaNotaNF: string;
+  action?: string;
 }
 
 function createData(
@@ -112,17 +112,6 @@ export function List({ faturas }: { faturas: IFatura[] }) {
       )
   );
 
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   const handleFaturaDownload = React.useCallback(() => {
     if (data && data.link) {
       const link = document.createElement('a');
@@ -142,6 +131,17 @@ export function List({ faturas }: { faturas: IFatura[] }) {
       handleFaturaDownload();
     }
   }, [faturaNf, handleFaturaDownload]);
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   return (
     <Material.Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -215,7 +215,7 @@ export function List({ faturas }: { faturas: IFatura[] }) {
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        onPageChange={({ target }) => handleChangePage(target.value)}
+        onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Material.Paper>

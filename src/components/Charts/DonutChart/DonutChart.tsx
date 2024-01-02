@@ -1,30 +1,33 @@
 import { Chart } from 'react-google-charts';
-
-const data = [
-  ['Task', 'Hours per Day'],
-  ['Work', 11],
-  ['Eat', 2],
-  ['Commute', 2],
-  ['Watch TV', 2],
-  ['Sleep', 7], // CSS-style declaration
-];
+import { IFatura } from '../../../dtos/faturas';
+import { aggregateFaturaValues } from '../../../helpers/fortamatters';
 
 const options = {
-  title: 'My Daily Activities',
-  pieHole: 0.4,
-  is3D: false,
+  title: 'Energia Elétrica R$',
+  pieHole: 0.3,
+  is3D: true,
+  colors: ['#9f4717', '#023b21'],
 };
 
 export function DonutChart({ fatura }: { fatura: IFatura }) {
+  const valores = aggregateFaturaValues(fatura);
+
+  const data = [
+    ['Tipo', 'valores R$'],
+    ['Custo Total', valores.custoTotal],
+    ['Economia', valores.economia],
+  ];
+
   return (
     <Chart
       chartType="PieChart"
       width="100%"
-      height="300px"
+      height="350px"
       data={data}
       options={options}
       style={{
         padding: 0,
+        margin: 0,
       }}
     />
   );

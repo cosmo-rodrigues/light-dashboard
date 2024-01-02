@@ -134,7 +134,7 @@ export function Item({
       <Material.Grid item xs={8}>
         <Material.Card sx={{ height: '62vh' }}>
           <Material.CardContent>
-            <BarChart />
+            <BarChart fatura={fatura} />
           </Material.CardContent>
         </Material.Card>
       </Material.Grid>
