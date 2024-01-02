@@ -7,7 +7,6 @@ import {
 
 export function BarChart({ fatura }: { fatura: IFatura }) {
   const valores = aggregateFaturaValues(fatura);
-  console.log(valores);
   const data = [
     ['Mês', 'Consumido', 'Gerado'],
     [formatDate(fatura.faturaReferenteA), valores.consumo, valores.compensada],

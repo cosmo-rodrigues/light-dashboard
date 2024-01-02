@@ -3,6 +3,7 @@ import * as Material from '@mui/material';
 import { IFatura } from '../../dtos/faturas';
 import { useDownloadFaturas } from '../../store/queries/faturas';
 import { formatDate, formatPrice } from '../../helpers/fortamatters';
+import { FileUpload } from './FileUpload';
 
 interface Column {
   id:
@@ -145,14 +146,25 @@ export function List({ faturas }: { faturas: IFatura[] }) {
 
   return (
     <Material.Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <Material.Typography
-        gutterBottom
-        variant="h5"
-        component="div"
-        sx={{ padding: '20px' }}
+      <Material.Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{
+          width: '96%',
+        }}
       >
-        Faturas Cadastradas
-      </Material.Typography>
+        <Material.Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ padding: '20px' }}
+        >
+          Faturas Cadastradas
+        </Material.Typography>
+
+        <FileUpload />
+      </Material.Stack>
       <Material.Divider />
       <Material.TableContainer sx={{ maxHeight: 440 }}>
         <Material.Table stickyHeader aria-label="sticky table">
