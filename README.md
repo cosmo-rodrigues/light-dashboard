@@ -37,8 +37,8 @@ npm run deploy
 
 ## Designe
 
-![Home](./pulic/home_open.png)
-![Home](./pulic/home_close.png)
-![Faturas](./pulic/faturas.png)
-![Fatura - Detalhes](./pulic/detalhes.png)
-![Custo](./pulic/custo.png)
+![Home]("https://github.com/cosmo-rodrigues/light-dashboard/blob/main/public/home_open.png")
+![Home]("https://github.com/cosmo-rodrigues/light-dashboard/blob/main/public/home_close.png")
+![Faturas]("https://github.com/cosmo-rodrigues/light-dashboard/blob/main/public/faturas.png")
+![Fatura - Detalhes]("https://github.com/cosmo-rodrigues/light-dashboard/blob/main/public/detalhes.png")
+![Custo]("https://github.com/cosmo-rodrigues/light-dashboard/blob/main/public/custo.png")
